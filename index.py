@@ -4,31 +4,10 @@
 
 # per installare le librerie -> python3.7 -m pip install plotly==4.4.1
 
+
+
 # ------------------------- IMPORTAZIONE LIBRERIE --------------------------- #
 
-#libreria utile per manipolare/acquisire informazioni sul tempo come date, ore, etc...
-#         la utilizzeremo per calcolare quanto tempo è richiesto per ottenere una pagina html
-import datetime
-
-#libreria utile per effettuare chiamate HTTP (protocollo stateless che permette ad un client
-#         in questo caso il nostro script di effettuare chiamate al server che restituisce una risposta)
-#         nel nostro caso faremo chiamate http per poter acquisire l'html delle pagine contenenti le
-#         offerte di lavoro su indeed
-import requests
-
-#libreria utile per poter effettuare il parse della stringa html grezza che ci arriverà dalla request
-#         questo per poter estrarre dati dall'html come il testo all'interno di div con una determinata classe
-from bs4 import BeautifulSoup
-
-#libreria utile per l'apprendimento automatico che permette attraverso algoritmi di classificazione di effettuare
-#         operazioni complesse con poche righe di codice
-from sklearn.feature_extraction import text
-
-#lista di parole non utili per l'apprendimento automatico come le preposizioni, gli articoli, etc...
-from italians_stop_words import ITALIAN_STOP_WORDS
-
-#libreria utile per creare dei grafici
-import plotly.graph_objects as graph
 # libreria utile per manipolare/acquisire informazioni sul tempo come date, ore, etc...
 #         la utilizzeremo per calcolare quanto tempo è richiesto per ottenere una pagina html
 import datetime
@@ -52,7 +31,6 @@ from italians_stop_words import ITALIAN_STOP_WORDS
 
 # ------------------------- CONFIGURAZIONE ALGORMITO --------------------------- #
 
-
 #lavoro che interessa ricercare (Data scientist, Developer, Magazziniere, etc...)
 job_name = "Data scientist"
 
@@ -65,6 +43,7 @@ pages_to_scan = 100
 
 #numero delle principali parole che vorremmo visualizzare in output
 results_number = 30
+
 
 
 # ------------------------------ INIZIO ALGORMITO ------------------------------ #
@@ -106,6 +85,7 @@ matrix = vect.fit_transform(job_offers)
 
 print("Numero di offerte di lavoro: " + str(len(job_offers)))
 print("Numero di parole con maggiore frequenza: " + str(len(vect.get_feature_names())))
+
 
 
 # ------------------------------ STAMPA DEI RISULTATI ------------------------------ #
