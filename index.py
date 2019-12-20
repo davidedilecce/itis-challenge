@@ -26,10 +26,15 @@ from sklearn.feature_extraction import text
 
 #lista di parole non utili per l'apprendimento automatico come le preposizioni, gli articoli, etc...
 from italians_stop_words import ITALIAN_STOP_WORDS
+
+#libreria utile per creare dei grafici
+import plotly.graph_objects as graph
 # libreria utile per manipolare/acquisire informazioni sul tempo come date, ore, etc...
 #         la utilizzeremo per calcolare quanto tempo è richiesto per ottenere una pagina html
 import datetime
 
+# libreria utile per creare dei grafici
+import plotly.graph_objects as graph
 # libreria utile per effettuare chiamate HTTP (protocollo stateless che permette ad un client
 #         in questo caso il nostro script di effettuare chiamate al server che restituisce una risposta)
 #         nel nostro caso faremo chiamate http per poter acquisire l'html delle pagine contenenti le
@@ -69,6 +74,7 @@ results_number = 30
 job_offers = []
 
 formatted_job_name = job_name.replace(" ", "+")
+excluding_words_list = job_name.lower().split(" ")
 
 for index in range (0, pages_to_scan * 10, 10):
 
@@ -91,7 +97,7 @@ for index in range (0, pages_to_scan * 10, 10):
 
 
 #qui viene creata un istanza del nostro plugin definendogli alcune regole per imparare le parole
-vect = text.CountVectorizer(ngram_range=(1,2), lowercase=True, stop_words=ITALIAN_STOP_WORDS.union(text.ENGLISH_STOP_WORDS))
+vect = text.CountVectorizer(ngram_range=(1,2), lowercase=True, stop_words=ITALIAN_STOP_WORDS.union(excluding_words_list).union(text.ENGLISH_STOP_WORDS))
 
 print("Sto imparando il vocabolario delle parole")
 
@@ -109,6 +115,8 @@ print("Numero di parole con maggiore frequenza: " + str(len(vect.get_feature_nam
 # che useremo per creare una lista contenente l'associazione tra la parola e la relativa frequenza
 freqs = [(word, matrix.getcol(idx).sum()) for word, idx in vect.vocabulary_.items()]
 
+words = []
+frequences = []
 
 # sorted        permette di creare una nuova lista a partire da una esistente (nel nostro caso freqs)
 # key           contiene la funzione che deve essere chiamata per ogni elemento della lista che ha un singolo argomento
@@ -117,4 +125,11 @@ freqs = [(word, matrix.getcol(idx).sum()) for word, idx in vect.vocabulary_.item
 #               la sua sintassi è LAMBDA ARGOMENTO: ESPRESSIONE
 # qui stiamo dicendo di prendere il secondo elemento della lista e di poter ordinare per quello
 for phrase, times in sorted (freqs, key = lambda x: -x[1])[:results_number]:
+  words.append(phrase)
+  frequences.append(times)
   print("Parola: " +  phrase + ", frequenza: " + str(times))
+
+
+fig = graph.Figure([graph.Bar(x = words, y = frequences)])
+fig.show()
+
