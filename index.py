@@ -2,7 +2,7 @@
 # author: DAVIDE DI LECCE - Applica s.r.l.
 # ****
 
-
+# per installare le librerie -> python3.7 -m pip install plotly==4.4.1
 
 # ------------------------- IMPORTAZIONE LIBRERIE --------------------------- #
 
