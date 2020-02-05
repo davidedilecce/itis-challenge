@@ -1,6 +1,9 @@
 # ****
 # author: DAVIDE DI LECCE - Applica s.r.l.
 # ****
+
+#https://repl.it/@DavideDi5/Torneo
+
 import random
 import time
 
