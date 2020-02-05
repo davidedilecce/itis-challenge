@@ -32,7 +32,7 @@ from italians_stop_words import ITALIAN_STOP_WORDS
 # ------------------------- CONFIGURAZIONE ALGORMITO --------------------------- #
 
 #lavoro che interessa ricercare (Data scientist, Developer, Magazziniere, etc...)
-job_name = "Full stack developer"
+job_name = "Data scientist"
 
 #area di interesse (es: Milano, Matera, Roma, etc...)
 area = "Milano"
@@ -40,7 +40,7 @@ area = "Milano"
 #pagine di indeed che vogliamo scansionare,
 #più alto è il numero più il tempo l'esecuzione del nostro algoritmo sarà elevato
 #più il risultato sarà accurato
-pages_to_scan = 100
+pages_to_scan = 30
 
 #numero delle principali parole che vorremmo visualizzare in output
 results_number = 30
