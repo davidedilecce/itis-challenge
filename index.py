@@ -1,5 +1,5 @@
 # ****
-# author: DAVIDE DI LECCE - Applica s.r.l.
+# author: DAVIDE DI LECCE - Digistone s.r.l.
 # ****
 
 # per installare le librerie -> python3.7 -m pip install plotly==4.4.1
