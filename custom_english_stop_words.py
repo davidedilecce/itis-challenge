@@ -1,0 +1,1 @@
+CUSTOM_ENGLISH_STOP_WORDS = frozenset(["end", "looking"])

@@ -26,13 +26,14 @@ from bs4 import BeautifulSoup
 #         operazioni complesse con poche righe di codice
 from sklearn.feature_extraction import text
 
+from custom_english_stop_words import CUSTOM_ENGLISH_STOP_WORDS
 # lista di parole non utili per l'apprendimento automatico come le preposizioni, gli articoli, etc...
 from italians_stop_words import ITALIAN_STOP_WORDS
 
 # ------------------------- CONFIGURAZIONE ALGORMITO --------------------------- #
 
 #lavoro che interessa ricercare (Data scientist, Developer, Magazziniere, etc...)
-job_name = "Data scientist"
+job_name = "developer"
 
 #area di interesse (es: Milano, Matera, Roma, etc...)
 area = "Milano"
@@ -79,7 +80,7 @@ for index in range (0, pages_to_scan * 10, 10):
 
 
 #qui viene creata un istanza del nostro plugin definendogli alcune regole per imparare le parole
-vect = text.CountVectorizer(ngram_range=(1,2), lowercase=True, stop_words=ITALIAN_STOP_WORDS.union(excluding_words_list).union(text.ENGLISH_STOP_WORDS))
+vect = text.CountVectorizer(ngram_range=(1,2), lowercase=True, stop_words=ITALIAN_STOP_WORDS.union(excluding_words_list).union(text.ENGLISH_STOP_WORDS).union(frozenset([CUSTOM_ENGLISH_STOP_WORDS])).union(frozenset([area])))
 
 print("Sto imparando il vocabolario delle parole")
 
@@ -114,5 +115,12 @@ for phrase, times in sorted (freqs, key = lambda x: -x[1])[:results_number]:
 
 
 fig = graph.Figure([graph.Bar(x = words, y = frequences)])
+fig.update_layout(title={
+  'text': "Offered by DIGISTONE",
+  'y':0.95,
+  'x':0.5,
+  'xanchor': 'center',
+  'yanchor': 'top'})
+fig.update_layout(title_font_size=30)
 fig.show()
 
