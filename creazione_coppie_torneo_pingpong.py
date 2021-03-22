@@ -1,5 +1,5 @@
 # ****
-# author: DAVIDE DI LECCE - Applica s.r.l.
+# author: DAVIDE DI LECCE - Digistone s.r.l.
 # ****
 
 #https://repl.it/@DavideDi5/Torneo
